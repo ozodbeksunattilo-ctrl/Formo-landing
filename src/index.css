@@ -1,0 +1,55 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+:root {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+/* Sticky header (64px) anchori ostiga tushmasligi uchun */
+[id] {
+  scroll-margin-top: 80px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-fade] {
+  opacity: 0;
+}
+
+[data-fade].is-visible {
+  animation: fadeUp 700ms ease-out both;
+}
+
+/* prefers-reduced-motion da [data-fade] ko'rinmas qolmasligi uchun */
+@media (prefers-reduced-motion: reduce) {
+  [data-fade] {
+    opacity: 1;
+  }
+}
+
+:where(a, button, input, summary):focus-visible {
+  outline: 2px solid #f2a33a;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
